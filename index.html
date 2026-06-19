@@ -625,39 +625,41 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
     </div>
 
     <form id="offerte-form" class="form-wrap" onsubmit="handleSubmit(event)">
+      <!-- Honeypot gegen Spam-Bots -->
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-grid">
         <label class="form-label">Name *
-          <input required type="text" placeholder="Vor- und Nachname">
+          <input required type="text" name="name" placeholder="Vor- und Nachname">
         </label>
         <label class="form-label">E-Mail *
-          <input required type="email" placeholder="name@beispiel.ch">
+          <input required type="email" name="email" placeholder="name@beispiel.ch">
         </label>
         <label class="form-label">Telefon
-          <input type="tel" placeholder="+41 79 000 00 00">
+          <input type="tel" name="telefon" placeholder="+41 79 000 00 00">
         </label>
         <label class="form-label">Material
-          <select>
+          <select name="material">
             <option>Holz</option><option>Acryl</option><option>Leder</option>
             <option>Metall</option><option>Glas</option><option>Stein</option>
             <option>Kunststoff</option><option>Weiss noch nicht</option>
           </select>
         </label>
         <label class="form-label">Verfahren
-          <select>
+          <select name="verfahren">
             <option>Gravur</option><option>Schnitt</option><option>Gravur &amp; Schnitt</option>
           </select>
         </label>
         <label class="form-label">Stückzahl
-          <input type="number" min="1" placeholder="z. B. 25">
+          <input type="number" name="stueckzahl" min="1" placeholder="z. B. 25">
         </label>
         <label class="form-label">Datei-Upload
-          <input type="file">
+          <input type="file" name="datei">
         </label>
         <label class="form-label">Wunschtermin
-          <input type="date">
+          <input type="date" name="wunschtermin">
         </label>
         <label class="form-label full">Beschreibung
-          <textarea rows="4" placeholder="Beschreiben Sie Ihr Projekt: Motiv, Text, Abmessungen, Verwendungszweck …" style="resize:vertical"></textarea>
+          <textarea rows="4" name="beschreibung" placeholder="Beschreiben Sie Ihr Projekt: Motiv, Text, Abmessungen, Verwendungszweck …" style="resize:vertical"></textarea>
         </label>
       </div>
 
@@ -752,10 +754,61 @@ function loadGalleryImg(input, id) {
 }
 
 // ===== FORM =====
-function handleSubmit(e) {
+// Web3Forms Access-Key – kostenlos auf https://web3forms.com erstellen
+// (E-Mail eintragen, Key kommt per Mail) und hier einsetzen:
+const WEB3FORMS_ACCESS_KEY = '4c360679-0c10-43ce-ab6b-41f9a706e4ac';
+
+// hält das im Generator erstellte Design als Data-URL (oder null)
+let attachedDesignDataUrl = null;
+
+function dataUrlToFile(dataUrl, filename) {
+  const [head, b64] = dataUrl.split(',');
+  const mime = (head.match(/:(.*?);/) || [])[1] || 'image/png';
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new File([bytes], filename, { type: mime });
+}
+
+async function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('offerte-form').style.display = 'none';
-  document.getElementById('success-box').style.display = 'block';
+  const form = e.target;
+  const submitBtn = form.querySelector('.submit-btn');
+  const origLabel = submitBtn.textContent;
+
+  if (WEB3FORMS_ACCESS_KEY === 'DEIN-ACCESS-KEY-HIER') {
+    alert('Hinweis: Es wurde noch kein Web3Forms Access-Key hinterlegt. Die Anfrage kann erst nach Eintragen des Keys versendet werden.');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Wird gesendet …';
+
+  const fd = new FormData(form);
+  fd.append('access_key', WEB3FORMS_ACCESS_KEY);
+  fd.append('subject', 'Neue Offertanfrage – ReyEngrave Webseite');
+  fd.append('from_name', 'ReyEngrave Webseite');
+
+  // im Generator erstelltes Design als Datei anhängen (falls vorhanden)
+  if (attachedDesignDataUrl) {
+    fd.append('Generator-Design', dataUrlToFile(attachedDesignDataUrl, 'design-entwurf.png'));
+  }
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      form.style.display = 'none';
+      document.getElementById('success-box').style.display = 'block';
+    } else {
+      alert('Leider hat der Versand nicht geklappt: ' + (data.message || 'Unbekannter Fehler') + '\nBitte versuchen Sie es erneut oder schreiben Sie uns direkt per E-Mail.');
+    }
+  } catch (err) {
+    alert('Verbindungsfehler – die Anfrage konnte nicht gesendet werden. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = origLabel;
+  }
 }
 function resetForm() {
   document.getElementById('offerte-form').style.display = 'block';
@@ -764,6 +817,7 @@ function resetForm() {
   removeAttached();
 }
 function removeAttached() {
+  attachedDesignDataUrl = null;
   document.getElementById('no-attach').style.display = 'flex';
   document.getElementById('attached-img-row').style.display = 'none';
 }
@@ -1146,6 +1200,7 @@ async function genAttachDesign() {
   }
 
   const dataUrl = canvas.toDataURL('image/png');
+  attachedDesignDataUrl = dataUrl;
   document.getElementById('attached-preview').src = dataUrl;
   document.getElementById('no-attach').style.display = 'none';
   document.getElementById('attached-img-row').style.display = 'flex';
