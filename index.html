@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReyEngrave – Präzise Lasergravur & Laserschnitt Schweiz</title>
+<meta name="description" content="Hochpräzise Lasergravuren und saubere Schnitte auf Holz, Metall, Acryl, Leder und mehr. Vom Einzelstück bis zur Serie – Schweizer Sorgfalt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;color:#F2F2EE;background:#141413;-webkit-font-smoothing:antialiased}
+::selection{background:#2E5D34;color:#fff}
+input,textarea,select,button{font-family:inherit}
+a{color:inherit}
+img{display:block}
+
+@keyframes reyScan{0%{top:6%;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:94%;opacity:0}}
+@keyframes reyFade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes reyPulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ---- NAV ---- */
+.site-header{position:sticky;top:0;z-index:200;background:rgba(18,18,17,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2A2A26}
+.nav-inner{max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:46px;width:auto}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1}
+.nav-logo-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.5px}
+.nav-logo-name .green{color:#7FBE86}
+.nav-logo-sub{font-size:9.5px;letter-spacing:2.5px;color:#8C8C84;margin-top:3px;font-weight:600;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{text-decoration:none;color:#F2F2EE;font-weight:600;font-size:14px;letter-spacing:.2px;transition:color .15s}
+.nav-links a:hover{color:#7FBE86}
+.nav-cta{text-decoration:none;background:#2E5D34;color:#fff;font-weight:600;font-size:14px;padding:11px 20px;display:inline-flex;align-items:center;position:relative;overflow:hidden}
+.nav-cta::after{content:'';position:absolute;top:0;right:0;width:14px;height:100%;background:#1A1A1A;clip-path:polygon(100% 0,100% 100%,0 100%)}
+.nav-hamburger{background:#1A1A1A;border:none;width:44px;height:44px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer}
+.nav-hamburger span{display:block;width:20px;height:2px;background:#fff}
+.nav-hamburger span:nth-child(2){background:#2E5D34}
+.mobile-menu{display:none;border-top:1px solid #2A2A26;background:#1B1B19;padding:8px 24px 20px;flex-direction:column;gap:4px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{text-decoration:none;color:#F2F2EE;font-weight:600;font-size:16px;padding:12px 0;border-bottom:1px solid #2A2A26}
+.mobile-menu .mobile-cta{margin-top:12px;text-align:center;background:#2E5D34;color:#fff;font-weight:600;font-size:15px;padding:14px 20px;border:none}
+
+@media(max-width:860px){
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+}
+
+/* ---- SECTION HELPERS ---- */
+.label{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:3px;color:#7FBE86;font-weight:600;text-transform:uppercase;margin-bottom:14px}
+.label-flag{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.label-flag .flag{width:26px;height:18px;background:linear-gradient(118deg,#2E5D34 0 49%,#1A1A1A 51% 100%);display:inline-block;flex:none}
+.h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,46px);line-height:1.05;letter-spacing:-1px}
+.divider{height:6px;background:linear-gradient(90deg,#2E5D34 0 50%,#1A1A1A 50% 100%)}
+.divider-sm{height:4px;background:linear-gradient(90deg,#2E5D34 0 50%,#1A1A1A 50% 100%)}
+
+/* ---- HERO ---- */
+#top{position:relative;background:#141413}
+.hero-inner{max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) 24px;display:flex;flex-wrap:wrap;gap:clamp(36px,5vw,72px);align-items:center}
+.hero-copy{flex:1 1 420px;min-width:300px;animation:reyFade .7s ease both}
+.hero-copy h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-1.5px;color:#F2F2EE}
+.hero-copy h1 .green{color:#7FBE86}
+.hero-copy p{font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:#B7B7B0;margin-top:24px;max-width:480px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn-primary{text-decoration:none;background:#2E5D34;color:#fff;font-weight:600;font-size:16px;padding:16px 30px;display:inline-flex;align-items:center;position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;top:0;right:0;width:18px;height:100%;background:#1A1A1A;clip-path:polygon(100% 0,100% 100%,0 100%)}
+.btn-outline{text-decoration:none;background:transparent;color:#F2F2EE;font-weight:600;font-size:16px;padding:16px 30px;border:1.5px solid #3C3C36;display:inline-flex;align-items:center;gap:10px}
+.btn-outline .flag-s{width:16px;height:12px;background:linear-gradient(118deg,#2E5D34 0 49%,#1A1A1A 51% 100%);display:inline-block;flex:none}
+.hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:48px}
+.hero-stats .stat-val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:#F2F2EE}
+.hero-stats .stat-lbl{font-size:13px;color:#8C8C84;font-weight:600}
+.hero-visual{flex:1 1 380px;min-width:300px;display:flex;justify-content:center;animation:reyFade .7s .15s ease both}
+.hero-card{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;border:1px solid #2A2A26;box-shadow:0 30px 80px -30px rgba(0,0,0,.35);overflow:hidden}
+.hero-card-bg{position:absolute;inset:0;background:linear-gradient(122deg,#2E5D34 0 49.6%,#1A1A1A 50.4% 100%)}
+.hero-card-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px}
+.hero-card-logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.hero-card-logo-box{width:62%;background:#fff;padding:18px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.hero-card-logo-box img{width:100%}
+.laser-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#7CFFB0,#fff,#7CFFB0,transparent);box-shadow:0 0 14px 3px rgba(124,255,176,.7);animation:reyScan 3.4s ease-in-out infinite}
+.hero-card-badge{position:absolute;bottom:16px;left:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.8);letter-spacing:1px}
+
+/* ---- LEISTUNGEN ---- */
+#leistungen{padding:clamp(56px,8vw,104px) 0;background:#141413}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:48px}
+.service-card{background:#1F1F1D;border:1px solid #2E2E29;padding:32px;position:relative;transition:transform .2s,box-shadow .2s}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px -16px rgba(0,0,0,.5)}
+.service-icon{width:54px;height:54px;background:#232321;display:flex;align-items:center;justify-content:center;margin-bottom:22px;position:relative;flex:none}
+.service-icon::before{content:'';position:absolute;top:0;right:0;width:14px;height:14px;background:linear-gradient(135deg,#2E5D34 50%,transparent 50%)}
+.service-icon svg{color:#7FBE86}
+.service-card h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;margin-bottom:10px}
+.service-card p{font-size:15px;line-height:1.6;color:#B7B7B0}
+
+/* ---- MATERIALIEN ---- */
+#materialien{padding:clamp(56px,8vw,104px) 0;background:#1B1B19;border-top:1px solid #2A2A26;border-bottom:1px solid #2A2A26}
+.mat-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:44px}
+.mat-header p{font-size:15px;line-height:1.6;color:#B7B7B0;max-width:340px}
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.mat-card{background:#1F1F1D;border:1px solid #2E2E29;overflow:hidden}
+.mat-thumb{height:120px;position:relative}
+.mat-thumb::after{content:'';position:absolute;top:0;left:0;width:22px;height:22px;background:linear-gradient(135deg,#1A1A1A 50%,transparent 50%)}
+.mat-card-body{padding:18px}
+.mat-card-body h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin-bottom:5px}
+.mat-card-body p{font-size:13px;line-height:1.5;color:#8C8C84}
+
+/* ---- MASCHINENPARK ---- */
+#maschinen{padding:clamp(56px,8vw,104px) 0;background:#1A1A1A;color:#fff;position:relative;overflow:hidden}
+#maschinen::before{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:linear-gradient(120deg,transparent 0 60%,rgba(46,93,52,.35) 60% 100%);pointer-events:none}
+.machine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:48px;position:relative}
+.machine-card{background:#222220;border:1px solid #34342F;padding:32px}
+.machine-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.machine-head .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;color:#fff}
+.machine-tag{font-size:11px;letter-spacing:2px;color:#7FBE86;border:1px solid #2E5D34;padding:4px 9px;font-weight:600}
+.machine-card p{font-size:15px;line-height:1.6;color:#B7B7B0;margin-bottom:20px}
+.machine-specs{display:flex;flex-direction:column;gap:9px}
+.machine-spec{display:flex;align-items:center;gap:10px;font-size:13.5px;color:#D8D8D2}
+.machine-spec::before{content:'';width:7px;height:7px;background:#2E5D34;flex:none}
+
+/* ---- GALERIE ---- */
+#galerie{padding:clamp(56px,8vw,104px) 0;background:#141413}
+.gal-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:44px}
+.gal-hint{font-size:14px;color:#8C8C84}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.gal-fig{margin:0;background:#1B1B19;border:1px solid #2A2A26}
+.gal-slot{width:100%;height:230px;background:#232321;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer}
+.gal-slot img{width:100%;height:100%;object-fit:cover;display:block}
+.gal-slot-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;color:#3C3C36;font-size:13px;font-weight:600;letter-spacing:.5px;text-align:center;padding:12px}
+.gal-slot-placeholder svg{opacity:.4}
+.gal-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+figcaption{padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+figcaption .fig-title{font-weight:600;font-size:14px}
+figcaption .fig-mat{font-size:12px;color:#8C8C84}
+
+/* ---- ABLAUF ---- */
+#ablauf{padding:clamp(56px,8vw,104px) 0;background:#1B1B19;border-top:1px solid #2A2A26;border-bottom:1px solid #2A2A26}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:48px}
+.step-card{background:#1F1F1D;border:1px solid #2E2E29;padding:28px;position:relative}
+.step-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:40px;color:#7FBE86;line-height:1;margin-bottom:16px}
+.step-card::after{content:'';position:absolute;top:28px;right:28px;width:18px;height:18px;background:linear-gradient(135deg,#2E5D34 50%,#1A1A1A 50%)}
+.step-card h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin-bottom:8px}
+.step-card p{font-size:14px;line-height:1.6;color:#B7B7B0}
+
+/* ---- DESIGN GENERATOR ---- */
+#generator{padding:clamp(56px,8vw,104px) 0;background:#141413}
+.gen-wrap{border:1px solid #3C3C36;background:#1A1A18;box-shadow:0 24px 60px -30px rgba(0,0,0,.55);margin-top:36px}
+.gen-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;background:#1A1A1A;border-bottom:1px solid #34342F}
+.gen-toolbar-label{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:12px;letter-spacing:2px;color:#7FBE86;margin-right:6px}
+.tool-btn{display:inline-flex;align-items:center;gap:7px;background:#2A2A27;color:#fff;border:1px solid #3C3C36;padding:9px 13px;cursor:pointer;font-size:13px;font-weight:600;transition:background .15s}
+.tool-btn:hover{background:#343430}
+.gen-body{display:flex;flex-wrap:wrap}
+.gen-stage-col{flex:1 1 460px;min-width:280px;padding:20px;background:#161614;display:flex;flex-direction:column;gap:14px}
+.mat-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mat-row .row-label{font-size:12px;font-weight:700;color:#B7B7B0;letter-spacing:1px}
+.mat-btn{width:34px;height:34px;border:2px solid transparent;cursor:pointer;padding:0;transition:border-color .15s}
+.mat-btn.active{border-color:#7FBE86}
+.stage-outer{display:flex;justify-content:center;align-items:center;flex:1}
+.stage-wrap{position:relative;width:100%;max-width:680px}
+#gen-stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15),0 8px 24px -8px rgba(0,0,0,.3);touch-action:none;cursor:default}
+.stage-badge{position:absolute;left:8px;bottom:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(0,0,0,.45);pointer-events:none}
+.gen-hint{font-size:12px;color:#8C8C84;text-align:center;margin:0}
+.gen-props{flex:1 1 280px;min-width:240px;max-width:340px;padding:20px;background:#1C1C1A;border-left:1px solid #2A2A26;display:flex;flex-direction:column;gap:18px}
+.props-title{font-size:12px;font-weight:700;color:#B7B7B0;letter-spacing:1px;margin-bottom:10px}
+.prop-input{width:100%;padding:10px;border:1px solid #3C3C36;background:#232321;color:#F2F2EE;font-size:13.5px}
+.prop-input:focus{outline:none;border-color:#2E5D34}
+.prop-label{font-size:12px;color:#B7B7B0;font-weight:600;display:flex;flex-direction:column;gap:5px}
+.prop-label input,.prop-label select,.prop-label textarea{margin-top:5px}
+.sel-header{font-size:12px;font-weight:700;color:#7FBE86;letter-spacing:1px}
+.no-sel{background:#232321;border:1px dashed #3C3C36;padding:22px;text-align:center;font-size:13.5px;color:#8C8C84;line-height:1.5}
+.layer-row{display:flex;gap:8px;flex-wrap:wrap}
+.layer-btn{flex:1;min-width:90px;background:#232321;border:1px solid #3C3C36;color:#E6E6E1;padding:9px;cursor:pointer;font-size:12.5px;font-weight:600}
+.action-row{display:flex;gap:8px}
+.dup-btn{flex:1;background:#2A2A27;color:#fff;border:1px solid #3C3C36;padding:11px;cursor:pointer;font-size:13px;font-weight:600}
+.del-btn{flex:1;background:#232321;color:#E0796E;border:1px solid #5A3A34;padding:11px;cursor:pointer;font-size:13px;font-weight:600}
+.divider-h{height:1px;background:#2A2A26}
+.attach-btn{background:#2E5D34;color:#fff;border:none;padding:15px;cursor:pointer;font-size:14.5px;font-weight:700;position:relative;overflow:hidden;width:100%;text-align:left}
+.attach-btn::after{content:'';position:absolute;top:0;right:0;width:16px;height:100%;background:#1A1A1A;clip-path:polygon(100% 0,100% 100%,0 100%)}
+
+/* ---- OFFERTE ---- */
+#offerte{padding:clamp(56px,8vw,104px) 0;background:#1A1A1A;color:#fff;position:relative;overflow:hidden}
+#offerte::before{content:'';position:absolute;bottom:0;left:0;width:46%;height:70%;background:linear-gradient(120deg,rgba(46,93,52,.3) 0 40%,transparent 40% 100%);pointer-events:none}
+.form-wrap{background:#222220;border:1px solid #34342F;padding:clamp(24px,4vw,40px);position:relative}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.form-label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#D8D8D2}
+.form-label input,.form-label select,.form-label textarea{padding:12px;background:#1A1A1A;border:1px solid #3C3C36;color:#fff;font-size:14px}
+.form-label input:focus,.form-label select:focus,.form-label textarea:focus{outline:none;border-color:#2E5D34}
+.form-label.full{grid-column:1/-1}
+.attached-box{margin-top:20px;padding:16px;background:#1A1A1A;border:1px dashed #3C3C36;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.attached-box .no-attach{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;flex-wrap:wrap;font-size:13.5px;color:#B7B7B0}
+.attached-box .no-attach a{color:#7FBE86;font-weight:600;font-size:13.5px;border:1px solid #2E5D34;padding:8px 14px;text-decoration:none}
+.attached-img-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.attached-img-row img{width:120px;height:auto;border:1px solid #3C3C36;background:#fff}
+.attached-label{font-weight:700;font-size:14px;color:#7FBE86;margin-bottom:4px}
+.attached-sub{font-size:13px;color:#B7B7B0;margin-bottom:8px}
+.remove-btn{background:transparent;color:#B7B7B0;border:1px solid #3C3C36;padding:7px 13px;cursor:pointer;font-size:12px;font-weight:600}
+.submit-btn{margin-top:24px;width:100%;background:#2E5D34;color:#fff;border:none;padding:18px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;position:relative;overflow:hidden;text-align:left}
+.submit-btn::after{content:'';position:absolute;top:0;right:0;width:22px;height:100%;background:#1A1A1A;clip-path:polygon(100% 0,100% 100%,0 100%)}
+.form-note{font-size:12px;color:#7A7A73;margin-top:12px;text-align:center}
+.success-box{background:#222220;border:1px solid #2E5D34;padding:40px;text-align:center;display:none}
+.success-icon{width:56px;height:56px;margin:0 auto 18px;background:#2E5D34;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:28px}
+.success-box h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;margin-bottom:10px}
+.success-box p{color:#B7B7B0;font-size:15px;max-width:440px;margin:0 auto 22px}
+.new-req-btn{background:transparent;color:#7FBE86;border:1px solid #2E5D34;padding:11px 22px;cursor:pointer;font-size:14px;font-weight:600}
+
+/* ---- FOOTER ---- */
+footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
+.footer-inner{max-width:1240px;margin:0 auto;padding:0 24px}
+.footer-grid{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-bottom:48px}
+.footer-brand{flex:1 1 280px;min-width:240px}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.footer-logo .logo-box{background:#fff;padding:6px;display:inline-flex}
+.footer-logo img{height:40px}
+.footer-logo-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px}
+.footer-brand p{font-size:14px;line-height:1.6;color:#9A9A92;max-width:300px}
+.socials{display:flex;gap:10px;margin-top:20px}
+.social-link{width:38px;height:38px;border:1px solid #34342F;display:flex;align-items:center;justify-content:center;color:#D8D8D2;text-decoration:none;transition:border-color .15s,color .15s}
+.social-link:hover{border-color:#7FBE86;color:#7FBE86}
+.footer-col{flex:0 1 240px}
+.footer-col-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:1px;color:#fff;margin-bottom:16px}
+.footer-col a{display:block;color:#9A9A92;text-decoration:none;font-size:14px;margin-bottom:10px;transition:color .15s}
+.footer-col a:hover{color:#D8D8D2}
+.footer-col address{color:#9A9A92;font-size:14px;line-height:1.5;font-style:normal;margin-bottom:12px}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;padding:22px 0;font-size:12.5px;color:#74746D}
+
+/* ---- ELEMENT HANDLES ---- */
+.el-wrap{position:absolute;touch-action:none;user-select:none}
+.el-selection-box{position:absolute;inset:-2px;border:1.5px solid #2E5D34;box-shadow:0 0 0 1px rgba(255,255,255,.7);pointer-events:none}
+.el-rot-line{position:absolute;top:-16px;left:50%;width:1.5px;height:16px;margin-left:-.75px;background:#2E5D34;pointer-events:none}
+.el-rot-handle{position:absolute;top:-30px;left:50%;width:16px;height:16px;margin-left:-8px;background:#2E5D34;border-radius:50%;border:2px solid #fff;cursor:grab;touch-action:none;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.el-resize-handle{position:absolute;right:-8px;bottom:-8px;width:16px;height:16px;background:#fff;border:2px solid #2E5D34;cursor:nwse-resize;touch-action:none;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.el-del-handle{position:absolute;right:-12px;top:-30px;width:22px;height:22px;background:#1A1A1A;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-header" id="site-header">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <img src="assets/logo-mark.png" alt="ReyEngrave Logo" onerror="this.style.display='none'">
+      <span class="nav-logo-text">
+        <span class="nav-logo-name"><span class="green">Rey</span>Engrave</span>
+        <span class="nav-logo-sub">PRECISION LASER ENGRAVING</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="nav-desktop">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#materialien">Materialien</a>
+      <a href="#maschinen">Maschinenpark</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#offerte" class="nav-cta">Offerte anfragen</a>
+    </nav>
+    <button class="nav-hamburger" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="#leistungen" class="mobile-link">Leistungen</a>
+    <a href="#materialien" class="mobile-link">Materialien</a>
+    <a href="#maschinen" class="mobile-link">Maschinenpark</a>
+    <a href="#galerie" class="mobile-link">Galerie</a>
+    <a href="#ablauf" class="mobile-link">Ablauf</a>
+    <a href="#kontakt" class="mobile-link">Kontakt</a>
+    <a href="#offerte" class="mobile-cta mobile-link">Offerte anfragen</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="label-flag">
+        <span class="flag"></span>
+        <span class="label" style="margin:0">Schweizer Lasergravur &amp; Laserschnitt</span>
+      </div>
+      <h1>Präzision, die<br><span class="green">eingraviert</span> bleibt.</h1>
+      <p>Hochpräzise Gravuren und saubere Schnitte auf Holz, Metall, Acryl, Leder und mehr. Vom Einzelstück bis zur Serie – fertigen wir Ihre Idee mit Schweizer Sorgfalt.</p>
+      <div class="hero-btns">
+        <a href="#offerte" class="btn-primary">Offerte anfragen</a>
+        <a href="#generator" class="btn-outline"><span class="flag-s"></span>Eigenes Design erstellen</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-val">0,01 mm</div><div class="stat-lbl">Detailgenauigkeit</div></div>
+        <div><div class="stat-val">10+</div><div class="stat-lbl">Materialien</div></div>
+        <div><div class="stat-val">48 h</div><div class="stat-lbl">Express möglich</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-bg"></div>
+        <div class="hero-card-grid"></div>
+        <div class="hero-card-logo">
+          <div class="hero-card-logo-box">
+            <img src="assets/logo-mark.png" alt="ReyEngrave Monogramm" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 80 80\' style=\'width:100%;fill:#2E5D34\'><text x=\'50%\' y=\'55%\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'Space Grotesk,sans-serif\' font-weight=\'700\' font-size=\'36\'>RE</text></svg>'">
+          </div>
+        </div>
+        <div class="laser-line"></div>
+        <div class="hero-card-badge">LASER · READY</div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<!-- ============ LEISTUNGEN ============ -->
+<section id="leistungen">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px">
+    <div style="max-width:640px">
+      <div class="label">Was wir können</div>
+      <h2 class="h2">Drei Leistungen, ein Anspruch: Präzision.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Lasergravur</h3>
+        <p>Feinste Details, Schriften, Fotos und Logos – dauerhaft und präzise in jedes Material eingebrannt. Für Einzelstücke ebenso wie für grössere Serien.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <h3>Laserschnitt</h3>
+        <p>Scharfe Kanten, saubere Konturen – wir schneiden Formen, Buchstaben und komplexe Geometrien aus Holz, Acryl, Leder und weiteren Materialien.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+        </div>
+        <h3>Gravur &amp; Schnitt kombiniert</h3>
+        <p>Das Beste beider Welten: Gravuren und Schnitte in einem Arbeitsgang. Ideal für Schilder, Auszeichnungen, Dekorelemente und individuelle Geschenke.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATERIALIEN ============ -->
+<section id="materialien">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px">
+    <div class="mat-header">
+      <div style="max-width:620px">
+        <div class="label">Materialien</div>
+        <h2 class="h2">Auf nahezu jeder Oberfläche zu Hause.</h2>
+      </div>
+      <p>Sie sind unsicher, ob Ihr Material geeignet ist? Fragen Sie uns – wir beraten ehrlich und testen im Zweifel vorab.</p>
+    </div>
+    <div class="mat-grid">
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:repeating-linear-gradient(91deg,rgba(0,0,0,.05) 0 3px,rgba(255,255,255,.04) 3px 7px),linear-gradient(160deg,#c69a68,#a9743f 55%,#b9854f)"></div>
+        <div class="mat-card-body"><h3>Holz</h3><p>Sperrholz, Massivholz, MDF – Gravuren erhalten einen warmen, kontrastreichen Ton.</p></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:linear-gradient(135deg,#eaf5f6,#cfe7ea 45%,#f3fafb)"></div>
+        <div class="mat-card-body"><h3>Acryl / Plexiglas</h3><p>Brillante Kanten beim Schnitt, matte Gravur – ideal für Schilder und Displays.</p></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:radial-gradient(circle at 32% 28%,#7a5538,#5d3d27 70%)"></div>
+        <div class="mat-card-body"><h3>Leder</h3><p>Personalisierte Portemonnaies, Taschen, Gürtel – dauerhaft und elegant graviert.</p></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:repeating-linear-gradient(92deg,#c9ccd1 0 2px,#bcbfc4 2px 4px),linear-gradient(180deg,#d3d6da,#b4b7bc)"></div>
+        <div class="mat-card-body"><h3>Metall</h3><p>Aluminium, Edelstahl, beschichtete Metalle – für professionelle Auszeichnungen und Typenschilder.</p></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:linear-gradient(135deg,#b8d4e0,#8ab5c8 50%,#a0c8d8)"></div>
+        <div class="mat-card-body"><h3>Glas</h3><p>Matte, feine Gravuren auf Trinkgläsern, Flaschen und Spiegeln.</p></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:linear-gradient(135deg,#4a4a4a,#2e2e2e 50%,#3a3a3a)"></div>
+        <div class="mat-card-body"><h3>Stein / Schiefer</h3><p>Präzise Gravuren auf Schiefer, Granit und Marmor für edle Präsentationen.</p></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-thumb" style="background:linear-gradient(135deg,#e8e0d8,#d4c8bc 50%,#e0d8ce)"></div>
+        <div class="mat-card-body"><h3>Kunststoff</h3><p>POM, PP, PE und weitere technische Kunststoffe für Industrie und Gewerbe.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MASCHINENPARK ============ -->
+<section id="maschinen">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px;position:relative">
+    <div style="max-width:640px">
+      <div class="label">Maschinenpark</div>
+      <h2 class="h2" style="color:#fff">Profi-Equipment für reproduzierbare Qualität.</h2>
+      <p style="font-size:16px;line-height:1.6;color:#B7B7B0;margin-top:18px">Wir arbeiten mit industrieerprobten Lasersystemen von Trotec und xTool. Das bedeutet für Sie: feinste Details, saubere Kanten und gleichbleibende Ergebnisse – auch bei grösseren Auflagen.</p>
+    </div>
+    <div class="machine-grid">
+      <div class="machine-card">
+        <div class="machine-head">
+          <span class="brand">Trotec Speedy 400</span>
+          <span class="machine-tag">CO₂ · FIBER</span>
+        </div>
+        <p>Industrielaser mit bis zu 100 W für Holz, Acryl, Leder, Textil und beschichtete Metalle. Hohe Geschwindigkeit bei maximaler Präzision.</p>
+        <div class="machine-specs">
+          <div class="machine-spec">Arbeitsfeld 1016 × 610 mm</div>
+          <div class="machine-spec">Auflösung bis 1000 dpi</div>
+          <div class="machine-spec">Repeat-Genauigkeit ± 0,01 mm</div>
+          <div class="machine-spec">Autofokus & Kamerasystem</div>
+        </div>
+      </div>
+      <div class="machine-card">
+        <div class="machine-head">
+          <span class="brand">xTool P2 55W</span>
+          <span class="machine-tag">CO₂ DIODE</span>
+        </div>
+        <p>Kompaktes, leistungsstarkes System für kleinere Formate und Prototypen. Ideal für schnelle Einzelstücke und detaillierte Fotoradierungen.</p>
+        <div class="machine-specs">
+          <div class="machine-spec">Arbeitsfeld 600 × 400 mm</div>
+          <div class="machine-spec">55 W CO₂-Laserquelle</div>
+          <div class="machine-spec">Kameragestützte Positionierung</div>
+          <div class="machine-spec">Passthrough für Überformate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section id="galerie">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px">
+    <div class="gal-header">
+      <div style="max-width:620px">
+        <div class="label">Referenzen</div>
+        <h2 class="h2">Ausgewählte Arbeiten.</h2>
+      </div>
+      <p class="gal-hint">Beispielarbeiten – klicken Sie auf ein Feld, um ein eigenes Bild einzufügen.</p>
+    </div>
+    <div class="gal-grid">
+      <figure class="gal-fig">
+        <div class="gal-slot" data-gal-id="1">
+          <img src="assets/ref-1.png" alt="Holzschneidebrett" style="display:none">
+          <div class="gal-slot-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild hier ablegen</div>
+          <input type="file" accept="image/*" onchange="loadGalleryImg(this,1)">
+        </div>
+        <figcaption><span class="fig-title">Holzschneidebrett</span><span class="fig-mat">Buchenholz</span></figcaption>
+      </figure>
+      <figure class="gal-fig">
+        <div class="gal-slot" data-gal-id="2">
+          <img src="assets/ref-2.png" alt="Firmenlogo Metall" style="display:none">
+          <div class="gal-slot-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild hier ablegen</div>
+          <input type="file" accept="image/*" onchange="loadGalleryImg(this,2)">
+        </div>
+        <figcaption><span class="fig-title">Firmenlogo</span><span class="fig-mat">Edelstahl</span></figcaption>
+      </figure>
+      <figure class="gal-fig">
+        <div class="gal-slot" data-gal-id="3">
+          <img src="assets/ref-3.png" alt="Namensschild Acryl" style="display:none">
+          <div class="gal-slot-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild hier ablegen</div>
+          <input type="file" accept="image/*" onchange="loadGalleryImg(this,3)">
+        </div>
+        <figcaption><span class="fig-title">Namensschild</span><span class="fig-mat">Acryl</span></figcaption>
+      </figure>
+      <figure class="gal-fig">
+        <div class="gal-slot" data-gal-id="4">
+          <img src="assets/ref-4.png" alt="Erinnerungsstück Leder" style="display:none">
+          <div class="gal-slot-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild hier ablegen</div>
+          <input type="file" accept="image/*" onchange="loadGalleryImg(this,4)">
+        </div>
+        <figcaption><span class="fig-title">Erinnerungsstück</span><span class="fig-mat">Leder</span></figcaption>
+      </figure>
+      <figure class="gal-fig">
+        <div class="gal-slot" data-gal-id="5">
+          <img src="assets/ref-5.png" alt="Visitenkarte Holz" style="display:none">
+          <div class="gal-slot-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild hier ablegen</div>
+          <input type="file" accept="image/*" onchange="loadGalleryImg(this,5)">
+        </div>
+        <figcaption><span class="fig-title">Visitenkarte</span><span class="fig-mat">Birkenholz</span></figcaption>
+      </figure>
+      <figure class="gal-fig">
+        <div class="gal-slot" data-gal-id="6">
+          <img src="assets/ref-6.png" alt="Dekorplatte" style="display:none">
+          <div class="gal-slot-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild hier ablegen</div>
+          <input type="file" accept="image/*" onchange="loadGalleryImg(this,6)">
+        </div>
+        <figcaption><span class="fig-title">Dekorplatte</span><span class="fig-mat">MDF</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABLAUF ============ -->
+<section id="ablauf">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px">
+    <div style="max-width:640px">
+      <div class="label">So funktioniert's</div>
+      <h2 class="h2">In vier Schritten zum fertigen Stück.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Anfrage</h3>
+        <p>Beschreiben Sie Ihr Projekt über das Offerte-Formular – mit Motiv, Material, Masse und Menge. Optional: eigenes Design aus dem Generator anhängen.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Datenprüfung</h3>
+        <p>Wir prüfen Ihre Dateien und Anforderungen, klären offene Fragen und senden Ihnen innert eines Werktags eine unverbindliche Offerte.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Produktion</h3>
+        <p>Nach Ihrer Freigabe starten wir die Produktion mit unseren Präzisionslasern. Standardlieferung 3–5 Werktage, Express 48 h möglich.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Lieferung</h3>
+        <p>Sorgfältig verpackt direkt zu Ihnen. Schweizweit per Post oder nach Absprache Abholung in Winterthur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESIGN-GENERATOR ============ -->
+<section id="generator">
+  <div style="max-width:1240px;margin:0 auto;padding:0 24px">
+    <div style="max-width:680px">
+      <div class="label-flag">
+        <span class="flag"></span>
+        <span class="label" style="margin:0">Design-Generator</span>
+      </div>
+      <h2 class="h2">Gestalten Sie Ihr Gravur-Design selbst.</h2>
+      <p style="font-size:16px;line-height:1.6;color:#B7B7B0;margin-top:16px">Wählen Sie ein Musterbrett, fügen Sie Text, Formen und eigene Bilder hinzu, ordnen Sie alles frei an – und hängen Sie das Ergebnis direkt an Ihre Offertanfrage.</p>
+    </div>
+
+    <div class="gen-wrap">
+      <!-- toolbar -->
+      <div class="gen-toolbar">
+        <span class="gen-toolbar-label">WERKZEUGE</span>
+        <button class="tool-btn" onclick="genAddText()" title="Text hinzufügen">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>Text
+        </button>
+        <button class="tool-btn" onclick="genAddRect()" title="Rechteck">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/></svg>Rechteck
+        </button>
+        <button class="tool-btn" onclick="genAddCircle()" title="Kreis">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>Kreis
+        </button>
+        <button class="tool-btn" onclick="genAddLine()" title="Linie">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/></svg>Linie
+        </button>
+        <button class="tool-btn" onclick="genAddStar()" title="Stern">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Stern
+        </button>
+        <button class="tool-btn" onclick="genTriggerUpload()" title="Bild hochladen">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bild
+        </button>
+        <input type="file" id="gen-file-input" accept="image/*" style="display:none" onchange="genOnUpload(this)">
+        <div style="flex:1"></div>
+        <button class="tool-btn" id="gen-preview-btn" onclick="genTogglePreview()" style="background:#2E5D34;color:#fff;border-color:#2E5D34">Vorschau</button>
+        <button class="tool-btn" onclick="genReset()">Zurücksetzen</button>
+      </div>
+
+      <div class="gen-body">
+        <!-- stage col -->
+        <div class="gen-stage-col">
+          <div class="mat-row">
+            <span class="row-label">MUSTERBRETT</span>
+            <button class="mat-btn active" id="mat-wood" onclick="genSetBg('wood')" title="Holzoptik" style="background:repeating-linear-gradient(91deg,rgba(0,0,0,.08) 0 3px,rgba(255,255,255,.06) 3px 7px),linear-gradient(160deg,#c69a68,#a9743f 55%,#b9854f)"></button>
+            <button class="mat-btn" id="mat-acryl" onclick="genSetBg('acryl')" title="Acryl" style="background:linear-gradient(135deg,#eaf5f6,#cfe7ea 45%,#f3fafb)"></button>
+            <button class="mat-btn" id="mat-metal" onclick="genSetBg('metal')" title="Metall" style="background:repeating-linear-gradient(92deg,#c9ccd1 0 2px,#bcbfc4 2px 4px),linear-gradient(180deg,#d3d6da,#b4b7bc)"></button>
+            <button class="mat-btn" id="mat-leder" onclick="genSetBg('leder')" title="Leder" style="background:radial-gradient(circle at 32% 28%,#7a5538,#5d3d27 70%)"></button>
+            <span style="font-size:12.5px;color:#B7B7B0;font-weight:600;margin-left:4px" id="bg-label">Holzoptik</span>
+          </div>
+          <div class="stage-outer">
+            <div class="stage-wrap">
+              <div id="gen-stage" onpointerdown="genStagePointerDown(event)">
+                <div class="stage-badge" id="stage-badge">200 × 150 mm</div>
+              </div>
+            </div>
+          </div>
+          <p class="gen-hint">Element antippen zum Auswählen · ziehen zum Verschieben · Ecke = Grösse · Punkt oben = drehen</p>
+        </div>
+
+        <!-- props col -->
+        <div class="gen-props">
+          <div>
+            <div class="props-title">WERKSTÜCK-GRÖSSE</div>
+            <select class="prop-input" onchange="genOnPreset(this)" style="margin-bottom:10px">
+              <option value="200x150">Standardformat 200 × 150 mm</option>
+              <option value="100x100">Quadrat 100 × 100 mm</option>
+              <option value="297x210">A4 297 × 210 mm</option>
+              <option value="50x85">Kreditkartenformat 85 × 50 mm</option>
+              <option value="custom">Benutzerdefiniert</option>
+            </select>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="number" id="work-w" value="200" onchange="genUpdateDims()" style="width:50%;padding:9px;border:1px solid #3C3C36;background:#232321;color:#F2F2EE;font-size:13px">
+              <span style="color:#8C8C84;font-size:13px">×</span>
+              <input type="number" id="work-h" value="150" onchange="genUpdateDims()" style="width:50%;padding:9px;border:1px solid #3C3C36;background:#232321;color:#F2F2EE;font-size:13px">
+              <span style="color:#8C8C84;font-size:12px">mm</span>
+            </div>
+          </div>
+          <div class="divider-h"></div>
+
+          <!-- selection panel -->
+          <div id="gen-sel-panel">
+            <div class="no-sel">Fügen Sie über die Werkzeugleiste<br>Text, Formen oder ein Bild hinzu –<br>und wählen Sie es hier zum Bearbeiten aus.</div>
+          </div>
+
+          <div class="divider-h"></div>
+          <button class="attach-btn" onclick="genAttachDesign()">Design an Offerte anhängen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFERTE ============ -->
+<section id="offerte">
+  <div style="max-width:1000px;margin:0 auto;padding:0 24px;position:relative">
+    <div style="max-width:620px;margin-bottom:40px">
+      <div class="label">Offertanfrage</div>
+      <h2 class="h2" style="color:#fff">Unverbindlich anfragen.</h2>
+      <p style="font-size:16px;line-height:1.6;color:#B7B7B0;margin-top:16px">Kein Online-Kauf – wir erstellen Ihnen eine massgeschneiderte Offerte. Beschreiben Sie Ihr Projekt, und wir melden uns in der Regel innert eines Werktags.</p>
+    </div>
+
+    <div class="success-box" id="success-box">
+      <div class="success-icon">✓</div>
+      <h3>Vielen Dank!</h3>
+      <p>Ihre Anfrage ist eingegangen. Wir prüfen die Details und senden Ihnen zeitnah eine unverbindliche Offerte an Ihre E-Mail-Adresse.</p>
+      <button class="new-req-btn" onclick="resetForm()">Neue Anfrage</button>
+    </div>
+
+    <form id="offerte-form" class="form-wrap" onsubmit="handleSubmit(event)">
+      <div class="form-grid">
+        <label class="form-label">Name *
+          <input required type="text" placeholder="Vor- und Nachname">
+        </label>
+        <label class="form-label">E-Mail *
+          <input required type="email" placeholder="name@beispiel.ch">
+        </label>
+        <label class="form-label">Telefon
+          <input type="tel" placeholder="+41 79 000 00 00">
+        </label>
+        <label class="form-label">Material
+          <select>
+            <option>Holz</option><option>Acryl</option><option>Leder</option>
+            <option>Metall</option><option>Glas</option><option>Stein</option>
+            <option>Kunststoff</option><option>Weiss noch nicht</option>
+          </select>
+        </label>
+        <label class="form-label">Verfahren
+          <select>
+            <option>Gravur</option><option>Schnitt</option><option>Gravur &amp; Schnitt</option>
+          </select>
+        </label>
+        <label class="form-label">Stückzahl
+          <input type="number" min="1" placeholder="z. B. 25">
+        </label>
+        <label class="form-label">Datei-Upload
+          <input type="file">
+        </label>
+        <label class="form-label">Wunschtermin
+          <input type="date">
+        </label>
+        <label class="form-label full">Beschreibung
+          <textarea rows="4" placeholder="Beschreiben Sie Ihr Projekt: Motiv, Text, Abmessungen, Verwendungszweck …" style="resize:vertical"></textarea>
+        </label>
+      </div>
+
+      <!-- attached design -->
+      <div class="attached-box" id="attached-box">
+        <div class="no-attach" id="no-attach">
+          <span>Noch kein Design angehängt.</span>
+          <a href="#generator">Im Generator entwerfen →</a>
+        </div>
+        <div class="attached-img-row" id="attached-img-row" style="display:none">
+          <img id="attached-preview" src="" alt="Angehängtes Design">
+          <div>
+            <div class="attached-label">✓ Design angehängt</div>
+            <div class="attached-sub">Ihr Entwurf aus dem Generator wird mitgesendet.</div>
+            <button type="button" class="remove-btn" onclick="removeAttached()">Entfernen</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Offerte anfragen</button>
+      <p class="form-note">Mit dem Absenden stimmen Sie der Bearbeitung Ihrer Angaben zur Offertstellung zu.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ KONTAKT / FOOTER ============ -->
+<footer id="kontakt">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-box"><img src="assets/logo-mark.png" alt="ReyEngrave" style="height:40px" onerror="this.style.display='none'"></span>
+          <span class="footer-logo-name"><span style="color:#7FBE86">Rey</span><span style="color:#fff">Engrave</span></span>
+        </div>
+        <p>Präzise Lasergravur und Laserschnitt aus der Schweiz. Vom Prototyp bis zur Kleinserie.</p>
+        <div class="socials">
+          <a href="#kontakt" class="social-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#kontakt" class="social-link" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4.5A2.5 2.5 0 0117 15v2M12 10v7"/></svg>
+          </a>
+          <a href="#kontakt" class="social-link" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">KONTAKT</div>
+        <address>ReyEngrave GmbH<br>Industriestrasse 12<br>8400 Winterthur</address>
+        <a href="mailto:hallo@reyengrave.ch">hallo@reyengrave.ch</a>
+        <a href="tel:+41520000000">+41 52 000 00 00</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">NAVIGATION</div>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#materialien">Materialien</a>
+        <a href="#maschinen">Maschinenpark</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#offerte">Offerte anfragen</a>
+      </div>
+    </div>
+    <div class="divider-sm"></div>
+    <div class="footer-bottom">
+      <span>© 2026 ReyEngrave GmbH · Precision Laser Engraving</span>
+      <span>Made with Schweizer Präzision</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== NAV =====
+const navToggle = document.getElementById('nav-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+navToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+// ===== GALLERY =====
+function loadGalleryImg(input, id) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const slot = document.querySelector('[data-gal-id="'+id+'"]');
+    const img = slot.querySelector('img');
+    const ph = slot.querySelector('.gal-slot-placeholder');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    ph.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ===== FORM =====
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('offerte-form').style.display = 'none';
+  document.getElementById('success-box').style.display = 'block';
+}
+function resetForm() {
+  document.getElementById('offerte-form').style.display = 'block';
+  document.getElementById('success-box').style.display = 'none';
+  document.getElementById('offerte-form').reset();
+  removeAttached();
+}
+function removeAttached() {
+  document.getElementById('no-attach').style.display = 'flex';
+  document.getElementById('attached-img-row').style.display = 'none';
+}
+
+// ===== DESIGN GENERATOR =====
+const TEX = {
+  wood:  'repeating-linear-gradient(91deg,rgba(0,0,0,.08) 0 3px,rgba(255,255,255,.06) 3px 7px),linear-gradient(160deg,#c69a68,#a9743f 55%,#b9854f)',
+  acryl: 'linear-gradient(135deg,#eaf5f6,#cfe7ea 45%,#f3fafb)',
+  metal: 'repeating-linear-gradient(92deg,#c9ccd1 0 2px,#bcbfc4 2px 4px),linear-gradient(180deg,#d3d6da,#b4b7bc)',
+  leder: 'radial-gradient(circle at 32% 28%,#7a5538,#5d3d27 70%)',
+};
+const BGLABELS = { wood:'Holzoptik', acryl:'Acryl', metal:'Metall', leder:'Leder' };
+const FONTS = [
+  { css:"'Space Grotesk',sans-serif", label:'Space Grotesk' },
+  { css:"'Manrope',sans-serif", label:'Manrope' },
+  { css:"serif", label:'Serif' },
+  { css:"monospace", label:'Monospace' },
+  { css:"cursive", label:'Kursiv' },
+];
+
+let genBg = 'wood';
+let genEls = [];
+let genNextId = 1;
+let genSelId = null;
+let genPreview = false;
+let genDrag = null;
+let genElRefs = {};
+
+const stage = document.getElementById('gen-stage');
+stage.style.background = TEX.wood;
+
+function genSetBg(name) {
+  genBg = name;
+  stage.style.background = TEX[name];
+  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mat-'+name).classList.add('active');
+  document.getElementById('bg-label').textContent = BGLABELS[name];
+}
+
+function genUpdateDims() {
+  const w = document.getElementById('work-w').value;
+  const h = document.getElementById('work-h').value;
+  document.getElementById('stage-badge').textContent = w + ' × ' + h + ' mm';
+}
+
+function genOnPreset(sel) {
+  const v = sel.value;
+  if (v === 'custom') return;
+  const [w, h] = v.split('x');
+  document.getElementById('work-w').value = w;
+  document.getElementById('work-h').value = h;
+  genUpdateDims();
+}
+
+function centerOfStage() {
+  return { w: stage.clientWidth, h: stage.clientHeight, cx: stage.clientWidth/2, cy: stage.clientHeight/2 };
+}
+
+function genAddEl(el) {
+  const { cx, cy } = centerOfStage();
+  const w = el.w || 120, h = el.h || 60;
+  const full = { id: genNextId++, x: cx - w/2, y: cy - h/2, rot: 0, z: genEls.length, ...el };
+  genEls.push(full);
+  genSelId = full.id;
+  genPreview = false;
+  genRenderStage();
+}
+
+function genAddText()   { genAddEl({ type:'text', text:'Ihr Text', fontSize:34, fontFamily:"'Space Grotesk',sans-serif", color:'#1A1A1A', w:160, h:44 }); }
+function genAddRect()   { genAddEl({ type:'rect', w:150, h:96, fill:'#2E5D34' }); }
+function genAddCircle() { genAddEl({ type:'circle', w:120, h:120, fill:'#2E5D34' }); }
+function genAddLine()   { genAddEl({ type:'line', w:200, h:6, fill:'#1A1A1A' }); }
+function genAddStar()   { genAddEl({ type:'star', w:120, h:120, fill:'#2E5D34' }); }
+
+function genTriggerUpload() { document.getElementById('gen-file-input').click(); }
+function genOnUpload(input) {
+  const f = input.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      let w = img.width, h = img.height, max = 220;
+      if (w >= h) { if (w > max) { h = h*max/w; w = max; } }
+      else { if (h > max) { w = w*max/h; h = max; } }
+      genAddEl({ type:'image', src: r.result, w: Math.round(w), h: Math.round(h) });
+    };
+    img.src = r.result;
+  };
+  r.readAsDataURL(f);
+  input.value = '';
+}
+
+function genGetSel() { return genEls.find(el => el.id === genSelId) || null; }
+function genUpdate(id, patch) {
+  genEls = genEls.map(el => el.id === id ? { ...el, ...patch } : el);
+  genRenderStage();
+  genRenderProps();
+}
+
+function genDeleteSel() {
+  genEls = genEls.filter(el => el.id !== genSelId);
+  genSelId = null;
+  genRenderStage();
+  genRenderProps();
+}
+function genDuplicateSel() {
+  const el = genGetSel(); if (!el) return;
+  const copy = { ...el, id: genNextId++, x: el.x+18, y: el.y+18, z: genEls.length };
+  genEls.push(copy); genSelId = copy.id;
+  genRenderStage(); genRenderProps();
+}
+function genBringForward() {
+  const el = genGetSel(); if (!el) return;
+  const max = Math.max(...genEls.map(e=>e.z));
+  genUpdate(el.id, { z: max+1 });
+}
+function genSendBackward() {
+  const el = genGetSel(); if (!el) return;
+  const min = Math.min(...genEls.map(e=>e.z));
+  genUpdate(el.id, { z: min-1 });
+}
+
+function genTogglePreview() {
+  genPreview = !genPreview;
+  const btn = document.getElementById('gen-preview-btn');
+  if (genPreview) {
+    genSelId = null;
+    btn.textContent = '← Bearbeiten';
+    btn.style.background = '#2A2A27'; btn.style.color = '#fff'; btn.style.borderColor = '#3C3C36';
+  } else {
+    btn.textContent = 'Vorschau';
+    btn.style.background = '#2E5D34'; btn.style.color = '#fff'; btn.style.borderColor = '#2E5D34';
+  }
+  genRenderStage(); genRenderProps();
+}
+
+function genReset() {
+  genEls = []; genSelId = null; genPreview = false;
+  stage.innerHTML = '<div class="stage-badge" id="stage-badge">' + document.getElementById('work-w').value + ' × ' + document.getElementById('work-h').value + ' mm</div>';
+  genElRefs = {};
+  genRenderProps();
+}
+
+function genStagePointerDown(e) {
+  if (e.target === stage) { genSelId = null; genRenderProps(); genRenderStage(); }
+}
+
+// drag state
+function genStartDrag(e, id, mode) {
+  if (genPreview) return;
+  e.stopPropagation();
+  if (e.cancelable) e.preventDefault();
+  const el = genEls.find(x => x.id === id); if (!el) return;
+  const node = genElRefs[id];
+  const r = node ? node.getBoundingClientRect() : null;
+  genDrag = { id, mode, sx: e.clientX, sy: e.clientY, orig: { ...el },
+    cx: r ? r.left+r.width/2 : 0, cy: r ? r.top+r.height/2 : 0, last: { ...el } };
+  genSelId = id;
+  genRenderStage(); genRenderProps();
+  try { if (e.currentTarget.setPointerCapture) e.currentTarget.setPointerCapture(e.pointerId); } catch(_){}
+}
+
+window.addEventListener('pointermove', e => {
+  const d = genDrag; if (!d) return;
+  if (e.cancelable) e.preventDefault();
+  const node = genElRefs[d.id]; if (!node) return;
+  const dx = e.clientX - d.sx, dy = e.clientY - d.sy;
+  const o = d.orig;
+  if (d.mode === 'move') {
+    const nx = o.x+dx, ny = o.y+dy;
+    node.style.left = nx+'px'; node.style.top = ny+'px';
+    d.last = { ...o, x:nx, y:ny };
+  } else if (d.mode === 'rotate') {
+    const ang = Math.atan2(e.clientY-d.cy, e.clientX-d.cx)*180/Math.PI+90;
+    node.style.transform = 'rotate('+ang+'deg)';
+    d.last = { ...o, rot:ang };
+  } else if (d.mode === 'resize') {
+    const rad = -o.rot*Math.PI/180;
+    const lx = dx*Math.cos(rad)-dy*Math.sin(rad);
+    const ly = dx*Math.sin(rad)+dy*Math.cos(rad);
+    if (o.type==='text') {
+      const ratio = Math.max(0.2,(o.w+lx)/o.w);
+      const fs = Math.max(8,Math.round(o.fontSize*ratio));
+      node.style.fontSize = fs+'px'; d.last = { ...o, fontSize:fs };
+    } else if (o.type==='circle'||o.type==='star') {
+      const nw = Math.max(24,Math.round(o.w+lx));
+      node.style.width = nw+'px'; node.style.height = nw+'px'; d.last = { ...o, w:nw, h:nw };
+    } else if (o.type==='line') {
+      const nw = Math.max(12,Math.round(o.w+lx));
+      node.style.width = nw+'px'; d.last = { ...o, w:nw };
+    } else {
+      const nw = Math.max(24,Math.round(o.w+lx)), nh = Math.max(24,Math.round(o.h+ly));
+      node.style.width = nw+'px'; node.style.height = nh+'px'; d.last = { ...o, w:nw, h:nh };
+    }
+  }
+}, { passive:false });
+
+window.addEventListener('pointerup', () => {
+  const d = genDrag; if (!d) return;
+  genDrag = null;
+  genUpdate(d.id, d.last);
+});
+
+function genMakeElNode(el) {
+  const sel = (el.id === genSelId) && !genPreview;
+  const div = document.createElement('div');
+  div.className = 'el-wrap';
+  div.style.cssText = `left:${el.x}px;top:${el.y}px;transform:rotate(${el.rot}deg);transform-origin:center center;z-index:${el.z+1};cursor:${genPreview?'default':'move'}`;
+
+  if (el.type==='text') {
+    div.style.fontSize = el.fontSize+'px';
+    div.style.fontFamily = el.fontFamily;
+    div.style.color = el.color;
+    div.style.fontWeight = '600';
+    div.style.whiteSpace = 'pre';
+    div.style.lineHeight = '1.12';
+    div.style.padding = '2px 4px';
+    div.textContent = el.text;
+  } else if (el.type==='rect') {
+    div.style.width = el.w+'px'; div.style.height = el.h+'px';
+    div.style.background = el.fill;
+  } else if (el.type==='circle') {
+    div.style.width = el.w+'px'; div.style.height = el.h+'px';
+    div.style.background = el.fill; div.style.borderRadius = '50%';
+  } else if (el.type==='line') {
+    div.style.width = el.w+'px'; div.style.height = el.h+'px';
+    div.style.background = el.fill; div.style.borderRadius = '3px';
+  } else if (el.type==='star') {
+    div.style.width = el.w+'px'; div.style.height = el.h+'px';
+    div.style.background = el.fill;
+    div.style.clipPath = 'polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)';
+  } else if (el.type==='image') {
+    div.style.width = el.w+'px'; div.style.height = el.h+'px';
+    const img = document.createElement('img');
+    img.src = el.src; img.draggable = false;
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;pointer-events:none;display:block';
+    div.appendChild(img);
+  }
+
+  if (sel) {
+    const box = document.createElement('div'); box.className = 'el-selection-box'; div.appendChild(box);
+    const rotLine = document.createElement('div'); rotLine.className = 'el-rot-line'; div.appendChild(rotLine);
+    const rotH = document.createElement('div'); rotH.className = 'el-rot-handle'; rotH.title = 'Drehen';
+    rotH.addEventListener('pointerdown', e => genStartDrag(e, el.id, 'rotate')); div.appendChild(rotH);
+    const rsH = document.createElement('div'); rsH.className = 'el-resize-handle'; rsH.title = 'Grösse';
+    rsH.addEventListener('pointerdown', e => genStartDrag(e, el.id, 'resize')); div.appendChild(rsH);
+    const delH = document.createElement('div'); delH.className = 'el-del-handle'; delH.title = 'Löschen';
+    delH.textContent = '×';
+    delH.addEventListener('pointerdown', e => { e.stopPropagation(); genDeleteSel(); }); div.appendChild(delH);
+  }
+
+  div.addEventListener('pointerdown', e => genStartDrag(e, el.id, 'move'));
+  genElRefs[el.id] = div;
+  return div;
+}
+
+function genRenderStage() {
+  // preserve badge
+  const badge = document.getElementById('stage-badge');
+  stage.innerHTML = '';
+  genElRefs = {};
+  if (badge) stage.appendChild(badge);
+  else {
+    const b = document.createElement('div');
+    b.className = 'stage-badge'; b.id = 'stage-badge';
+    b.textContent = document.getElementById('work-w').value + ' × ' + document.getElementById('work-h').value + ' mm';
+    stage.appendChild(b);
+  }
+  const sorted = [...genEls].sort((a,b) => a.z - b.z);
+  sorted.forEach(el => stage.appendChild(genMakeElNode(el)));
+}
+
+function genRenderProps() {
+  const panel = document.getElementById('gen-sel-panel');
+  const el = genGetSel();
+  if (!el || genPreview) {
+    panel.innerHTML = '<div class="no-sel">Fügen Sie über die Werkzeugleiste<br>Text, Formen oder ein Bild hinzu –<br>und wählen Sie es hier zum Bearbeiten aus.</div>';
+    return;
+  }
+  const typeLabel = { text:'Text', rect:'Rechteck', circle:'Kreis', line:'Linie', star:'Stern', image:'Bild' }[el.type] || el.type;
+  let html = `<div class="sel-header">AUSGEWÄHLT · ${typeLabel}</div>`;
+
+  if (el.type === 'text') {
+    const fontOpts = FONTS.map(f => `<option value="${f.css}"${el.fontFamily===f.css?' selected':''}>${f.label}</option>`).join('');
+    html += `
+      <textarea rows="2" style="width:100%;padding:10px;border:1px solid #3C3C36;background:#232321;color:#F2F2EE;font-size:14px;resize:vertical" oninput="genPropText(this.value)">${el.text}</textarea>
+      <label class="prop-label">Schriftart<select style="width:100%;margin-top:5px;padding:9px;border:1px solid #3C3C36;background:#232321;color:#F2F2EE;font-size:13.5px" onchange="genPropFont(this.value)">${fontOpts}</select></label>
+      <div style="display:flex;gap:10px">
+        <label class="prop-label" style="flex:1">Grösse<input type="number" value="${el.fontSize}" style="width:100%;margin-top:5px;padding:9px;border:1px solid #3C3C36;background:#232321;color:#F2F2EE;font-size:13px" oninput="genPropFontSize(this.value)"></label>
+        <label class="prop-label">Farbe<input type="color" value="${el.color}" style="display:block;margin-top:5px;width:46px;height:38px;border:1px solid #3C3C36;padding:2px;cursor:pointer" oninput="genPropColor(this.value)"></label>
+      </div>`;
+  } else if (el.type !== 'image') {
+    html += `<label class="prop-label">Farbe<input type="color" value="${el.fill}" style="display:block;margin-top:5px;width:46px;height:38px;border:1px solid #3C3C36;padding:2px;cursor:pointer" oninput="genPropColor(this.value)"></label>`;
+  }
+
+  html += `
+    <div><div style="font-size:12px;color:#B7B7B0;font-weight:600;margin-bottom:7px">Ebene</div>
+      <div class="layer-row">
+        <button class="layer-btn" onclick="genBringForward()">Nach vorne</button>
+        <button class="layer-btn" onclick="genSendBackward()">Nach hinten</button>
+      </div></div>
+    <div class="action-row">
+      <button class="dup-btn" onclick="genDuplicateSel()">Duplizieren</button>
+      <button class="del-btn" onclick="genDeleteSel()">Löschen</button>
+    </div>`;
+
+  panel.innerHTML = html;
+}
+
+function genPropText(v)     { const el=genGetSel(); if(el) genUpdate(el.id,{text:v}); }
+function genPropFont(v)     { const el=genGetSel(); if(el) genUpdate(el.id,{fontFamily:v}); }
+function genPropFontSize(v) { const el=genGetSel(); const n=parseInt(v,10); if(el&&!isNaN(n)) genUpdate(el.id,{fontSize:Math.max(6,n)}); }
+function genPropColor(v)    { const el=genGetSel(); if(el) genUpdate(el.id, el.type==='text'?{color:v}:{fill:v}); }
+
+// canvas export + attach
+function drawStar(ctx,cx,cy,r,fill) {
+  const spikes=5,inner=r*0.42; let rot=-Math.PI/2;
+  ctx.beginPath();
+  for(let i=0;i<spikes;i++){
+    ctx.lineTo(cx+Math.cos(rot)*r, cy+Math.sin(rot)*r); rot+=Math.PI/spikes;
+    ctx.lineTo(cx+Math.cos(rot)*inner, cy+Math.sin(rot)*inner); rot+=Math.PI/spikes;
+  }
+  ctx.closePath(); ctx.fillStyle=fill; ctx.fill();
+}
+
+async function genAttachDesign() {
+  const W = stage.clientWidth, H = stage.clientHeight, scale = 2;
+  const canvas = document.createElement('canvas');
+  canvas.width = W*scale; canvas.height = H*scale;
+  const ctx = canvas.getContext('2d'); ctx.scale(scale,scale);
+
+  // background
+  if (genBg==='wood') {
+    const g=ctx.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#c69a68'); g.addColorStop(.55,'#a9743f'); g.addColorStop(1,'#b9854f');
+    ctx.fillStyle=g;
+  } else if (genBg==='acryl') {
+    const g=ctx.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#eaf5f6'); g.addColorStop(.5,'#cfe7ea'); g.addColorStop(1,'#f3fafb');
+    ctx.fillStyle=g;
+  } else if (genBg==='metal') {
+    const g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#d3d6da'); g.addColorStop(1,'#b4b7bc'); ctx.fillStyle=g;
+  } else {
+    const g=ctx.createRadialGradient(W*.32,H*.28,10,W*.32,H*.28,Math.max(W,H));
+    g.addColorStop(0,'#7a5538'); g.addColorStop(1,'#5d3d27'); ctx.fillStyle=g;
+  }
+  ctx.fillRect(0,0,W,H);
+
+  const els = [...genEls].sort((a,b)=>a.z-b.z);
+  const imgs = {};
+  await Promise.all(els.filter(e=>e.type==='image').map(e=>new Promise(res=>{
+    const im=new Image(); im.onload=()=>{imgs[e.id]=im;res()}; im.onerror=()=>res(); im.src=e.src;
+  })));
+
+  for (const el of els) {
+    ctx.save();
+    ctx.translate(el.x + (el.w||el.fontSize||10)/2, el.y + (el.h||el.fontSize||10)/2);
+    ctx.rotate(el.rot*Math.PI/180);
+    if (el.type==='text') {
+      ctx.font = `600 ${el.fontSize}px ${el.fontFamily}`;
+      ctx.fillStyle = el.color;
+      ctx.textBaseline = 'top';
+      ctx.fillText(el.text, -(el.w||100)/2, -(el.fontSize||30)/2);
+    } else if (el.type==='rect') {
+      ctx.fillStyle=el.fill; ctx.fillRect(-el.w/2,-el.h/2,el.w,el.h);
+    } else if (el.type==='circle') {
+      ctx.beginPath(); ctx.arc(0,0,el.w/2,0,Math.PI*2);
+      ctx.fillStyle=el.fill; ctx.fill();
+    } else if (el.type==='line') {
+      ctx.fillStyle=el.fill;
+      ctx.beginPath(); ctx.roundRect(-el.w/2,-el.h/2,el.w,el.h,3);
+      ctx.fill();
+    } else if (el.type==='star') {
+      drawStar(ctx,0,0,el.w/2,el.fill);
+    } else if (el.type==='image' && imgs[el.id]) {
+      ctx.drawImage(imgs[el.id],-el.w/2,-el.h/2,el.w,el.h);
+    }
+    ctx.restore();
+  }
+
+  const dataUrl = canvas.toDataURL('image/png');
+  document.getElementById('attached-preview').src = dataUrl;
+  document.getElementById('no-attach').style.display = 'none';
+  document.getElementById('attached-img-row').style.display = 'flex';
+  document.getElementById('offerte').scrollIntoView({ behavior:'smooth' });
+}
+</script>
+</body>
+</html>
