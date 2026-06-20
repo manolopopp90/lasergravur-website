@@ -26,6 +26,9 @@ img{display:block}
 .nav-inner{max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .nav-logo img{height:46px;width:auto}
+.nav-logo-tile{background:#fff;padding:5px 6px;display:inline-flex;align-items:center;border-radius:3px;line-height:0;flex:none;box-shadow:0 2px 8px -3px rgba(0,0,0,.5);transition:transform .2s ease,box-shadow .2s ease}
+.nav-logo-tile img{height:34px;width:auto;display:block}
+.nav-logo:hover .nav-logo-tile{transform:translateY(-1px);box-shadow:0 6px 16px -6px rgba(46,93,52,.7)}
 .nav-logo-text{display:flex;flex-direction:column;line-height:1}
 .nav-logo-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.5px}
 .nav-logo-name .green{color:#7FBE86}
@@ -76,9 +79,21 @@ img{display:block}
 .hero-card-bg{position:absolute;inset:0;background:linear-gradient(122deg,#2E5D34 0 49.6%,#1A1A1A 50.4% 100%)}
 .hero-card-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px}
 .hero-card-logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.hero-card-logo-box{width:62%;background:#fff;padding:18px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.hero-card-logo-box{width:62%;background:#fff;padding:18px;box-shadow:0 12px 40px rgba(0,0,0,.3);position:relative;overflow:hidden}
 .hero-card-logo-box img{width:100%}
-.laser-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#7CFFB0,#fff,#7CFFB0,transparent);box-shadow:0 0 14px 3px rgba(124,255,176,.7);animation:reyScan 3.4s ease-in-out infinite}
+/* ===== RASTER-GRAVUR: Logo erscheint Zeile für Zeile von oben nach unten ===== */
+/* Gravur-Schleier (weiss = unbearbeitete Fläche), zieht sich von oben nach unten zurück */
+.engrave-veil{position:absolute;inset:0;background:#fff;animation:engraveReveal 6s linear infinite;z-index:3;pointer-events:none}
+/* Unsichtbarer Track: trägt den Brennpunkt und wandert Zeile für Zeile nach unten */
+.engrave-row{position:absolute;left:0;right:0;height:0;animation:engraveRowDown 6s linear infinite;z-index:4;pointer-events:none}
+/* Laser-Brennpunkt: rast sehr schnell HIN UND HER (links↔rechts) entlang der Zeile */
+.laser-focus{position:absolute;top:-5px;left:0;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;
+  box-shadow:0 0 13px 5px rgba(124,255,176,.95),0 0 5px 1px #fff;animation:laserRaster .12s ease-in-out infinite alternate}
+/* Reveal: 0–72% gravieren (oben→unten), 72–100% fertiges Bild halten, dann von vorne */
+@keyframes engraveReveal{0%{clip-path:inset(0 0 0 0)}72%{clip-path:inset(100% 0 0 0)}100%{clip-path:inset(100% 0 0 0)}}
+@keyframes engraveRowDown{0%{top:0%;opacity:1}71%{top:100%;opacity:1}73%{opacity:0}100%{top:100%;opacity:0}}
+@keyframes laserRaster{0%{left:0%}100%{left:100%}}
+@media (prefers-reduced-motion:reduce){.engrave-veil,.engrave-row{display:none}}
 .hero-card-badge{position:absolute;bottom:16px;left:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.8);letter-spacing:1px}
 
 /* ---- LEISTUNGEN ---- */
@@ -98,7 +113,7 @@ img{display:block}
 .mat-header p{font-size:15px;line-height:1.6;color:#B7B7B0;max-width:340px}
 .mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
 .mat-card{background:#1F1F1D;border:1px solid #2E2E29;overflow:hidden}
-.mat-thumb{height:120px;position:relative}
+.mat-thumb{height:120px;position:relative;background-size:cover;background-position:center;background-repeat:no-repeat}
 .mat-thumb::after{content:'';position:absolute;top:0;left:0;width:22px;height:22px;background:linear-gradient(135deg,#1A1A1A 50%,transparent 50%)}
 .mat-card-body{padding:18px}
 .mat-card-body h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin-bottom:5px}
@@ -152,11 +167,11 @@ figcaption .fig-mat{font-size:12px;color:#8C8C84}
 .gen-stage-col{flex:1 1 460px;min-width:280px;padding:20px;background:#161614;display:flex;flex-direction:column;gap:14px}
 .mat-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .mat-row .row-label{font-size:12px;font-weight:700;color:#B7B7B0;letter-spacing:1px}
-.mat-btn{width:34px;height:34px;border:2px solid transparent;cursor:pointer;padding:0;transition:border-color .15s}
+.mat-btn{width:34px;height:34px;border:2px solid transparent;cursor:pointer;padding:0;transition:border-color .15s;background-size:cover;background-position:center;background-repeat:no-repeat}
 .mat-btn.active{border-color:#7FBE86}
 .stage-outer{display:flex;justify-content:center;align-items:center;flex:1}
 .stage-wrap{position:relative;width:100%;max-width:680px}
-#gen-stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15),0 8px 24px -8px rgba(0,0,0,.3);touch-action:none;cursor:default}
+#gen-stage{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15),0 8px 24px -8px rgba(0,0,0,.3);touch-action:none;cursor:default}
 .stage-badge{position:absolute;left:8px;bottom:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(0,0,0,.45);pointer-events:none}
 .gen-hint{font-size:12px;color:#8C8C84;text-align:center;margin:0}
 .gen-props{flex:1 1 280px;min-width:240px;max-width:340px;padding:20px;background:#1C1C1A;border-left:1px solid #2A2A26;display:flex;flex-direction:column;gap:18px}
@@ -229,6 +244,124 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
 .el-rot-handle{position:absolute;top:-30px;left:50%;width:16px;height:16px;margin-left:-8px;background:#2E5D34;border-radius:50%;border:2px solid #fff;cursor:grab;touch-action:none;box-shadow:0 1px 4px rgba(0,0,0,.4)}
 .el-resize-handle{position:absolute;right:-8px;bottom:-8px;width:16px;height:16px;background:#fff;border:2px solid #2E5D34;cursor:nwse-resize;touch-action:none;box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .el-del-handle{position:absolute;right:-12px;top:-30px;width:22px;height:22px;background:#1A1A1A;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+
+/* ============================================================
+   INTERAKTIVITÄT & MIKRO-INTERAKTIONEN
+   Signature: grüne "Laser-Gravur"-Linie beim Hover über Karten
+   ============================================================ */
+
+/* --- Signature: Laser-Sweep über Karten --- */
+.has-sweep{position:relative;overflow:hidden}
+.laser-sweep{position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,transparent,#7CFFB0,#fff,#7CFFB0,transparent);
+  box-shadow:0 0 14px 2px rgba(124,255,176,.55);opacity:0;pointer-events:none;z-index:6}
+.has-sweep:hover .laser-sweep{animation:laserSweep .9s cubic-bezier(.4,0,.2,1)}
+@keyframes laserSweep{0%{top:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:100%;opacity:0}}
+
+/* --- Custom Cursor-Glow auf Karten (radialer Lichtpunkt folgt der Maus) --- */
+.glow-host{position:relative}
+.glow-host::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+  transition:opacity .3s ease;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(124,255,176,.10),transparent 60%)}
+.glow-host:hover::before{opacity:1}
+.glow-host > *{position:relative;z-index:1}
+
+/* --- Leistungen: Top-Akzentbalken + Icon-Pop --- */
+.service-card::after{content:'';position:absolute;top:0;left:0;height:3px;width:100%;
+  background:linear-gradient(90deg,#2E5D34,#7CFFB0);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);z-index:7}
+.service-card:hover::after{transform:scaleX(1)}
+.service-card:hover{border-color:#3A6B41}
+.service-icon{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
+.service-card:hover .service-icon{transform:translateY(-3px) rotate(-4deg);background:#2E5D34;
+  box-shadow:0 0 0 1px #7FBE86,0 10px 22px -8px rgba(46,93,52,.85)}
+.service-icon svg{transition:color .3s ease}
+.service-card:hover .service-icon svg{color:#fff}
+.service-card h3{transition:color .25s ease}
+.service-card:hover h3{color:#7FBE86}
+
+/* --- Materialien: Textur-Zoom + Titel-Akzent --- */
+.mat-card{position:relative;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.mat-card:hover{transform:translateY(-5px);border-color:#3A6B41;box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.mat-thumb{transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.mat-card:hover .mat-thumb{transform:scale(1.07)}
+.mat-card-body h3{transition:color .25s ease}
+.mat-card:hover .mat-card-body h3{color:#7FBE86}
+
+/* --- Maschinen: Specs leuchten auf, Tag füllt sich --- */
+.machine-card{position:relative;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.machine-card:hover{transform:translateY(-4px);border-color:#4A7A50;box-shadow:0 22px 52px -22px rgba(0,0,0,.7)}
+.machine-spec,.machine-spec::before{transition:color .2s ease,box-shadow .25s ease,transform .2s ease}
+.machine-card:hover .machine-spec{color:#fff}
+.machine-card:hover .machine-spec::before{box-shadow:0 0 9px 1px rgba(124,255,176,.85)}
+.machine-tag{transition:background .25s ease,color .25s ease,box-shadow .25s ease}
+.machine-card:hover .machine-tag{background:#2E5D34;color:#fff;box-shadow:0 0 18px -2px rgba(46,93,52,.9)}
+
+/* --- Galerie: Bild-Zoom + Caption-Akzent --- */
+.gal-fig{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.gal-fig:hover{transform:translateY(-4px);border-color:#3A6B41;box-shadow:0 18px 44px -20px rgba(0,0,0,.65)}
+.gal-slot img{transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.gal-fig:hover .gal-slot img{transform:scale(1.07)}
+.gal-fig .fig-title{transition:color .2s ease}
+.gal-fig:hover .fig-title{color:#7FBE86}
+
+/* --- Ablauf: Nummer glüht beim Hover --- */
+.step-card{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.step-card:hover{transform:translateY(-4px);border-color:#3A6B41;box-shadow:0 16px 40px -18px rgba(0,0,0,.55)}
+.step-num{transition:text-shadow .35s ease,transform .35s ease}
+.step-card:hover .step-num{text-shadow:0 0 24px rgba(124,255,176,.55);transform:scale(1.05)}
+
+/* --- Navigation: animierte Laser-Unterstreichung --- */
+.nav-links a:not(.nav-cta){position:relative}
+.nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-5px;height:2px;width:100%;
+  background:linear-gradient(90deg,#7FBE86,#7CFFB0);transform:scaleX(0);transform-origin:left;
+  transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.nav-links a:not(.nav-cta):hover::after{transform:scaleX(1)}
+
+/* --- Buttons: Hebung + Shine-Sweep --- */
+.btn-primary,.nav-cta,.submit-btn,.attach-btn{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.btn-primary:hover,.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px -10px rgba(46,93,52,.9)}
+.submit-btn:hover,.attach-btn:hover{filter:brightness(1.08);box-shadow:0 14px 32px -12px rgba(46,93,52,.9)}
+.btn-primary::before,.nav-cta::before{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:skewX(-18deg);transition:left .6s ease;pointer-events:none}
+.btn-primary:hover::before,.nav-cta:hover::before{left:150%}
+.btn-outline{transition:border-color .2s ease,background .2s ease,transform .2s ease}
+.btn-outline:hover{border-color:#2E5D34;background:rgba(46,93,52,.14);transform:translateY(-2px)}
+.tool-btn{transition:background .15s ease,transform .12s ease,border-color .15s ease}
+.tool-btn:hover{transform:translateY(-1px);border-color:#4A7A50}
+
+/* --- Formular: grünes Fokus-Leuchten --- */
+.form-label input:focus,.form-label select:focus,.form-label textarea:focus,
+.prop-input:focus,.prop-label input:focus,.prop-label select:focus,.prop-label textarea:focus{
+  box-shadow:0 0 0 3px rgba(46,93,52,.35)}
+
+/* --- Social-Links: Hebung --- */
+.social-link{transition:border-color .15s ease,color .15s ease,transform .15s ease,box-shadow .15s ease}
+.social-link:hover{transform:translateY(-3px);box-shadow:0 8px 18px -8px rgba(46,93,52,.7)}
+
+/* --- Header: dezenter Schatten beim Scrollen --- */
+.site-header{transition:box-shadow .25s ease,background .25s ease}
+.site-header.scrolled{box-shadow:0 8px 30px -14px rgba(0,0,0,.65)}
+
+/* --- Scroll-Reveal (Progressive Enhancement via JS) --- */
+.reveal{opacity:0;transform:translateY(30px);
+  transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* --- Custom Scrollbar --- */
+*{scrollbar-color:#2E5D34 #1B1B19}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#1B1B19}
+::-webkit-scrollbar-thumb{background:#2E5D34;border:2px solid #1B1B19}
+::-webkit-scrollbar-thumb:hover{background:#7FBE86}
+
+/* --- Reduced Motion: Respekt für Nutzerpräferenz --- */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -237,7 +370,7 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
 <header class="site-header" id="site-header">
   <div class="nav-inner">
     <a href="#top" class="nav-logo">
-      <img src="assets/logo-mark.png" alt="ReyEngrave Logo" onerror="this.style.display='none'">
+      <span class="nav-logo-tile"><img src="assets/logo-mark.jpg" alt="ReyEngrave Logo" onerror="this.parentElement.style.display='none'"></span>
       <span class="nav-logo-text">
         <span class="nav-logo-name"><span class="green">Rey</span>Engrave</span>
         <span class="nav-logo-sub">PRECISION LASER ENGRAVING</span>
@@ -293,10 +426,11 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
         <div class="hero-card-grid"></div>
         <div class="hero-card-logo">
           <div class="hero-card-logo-box">
-            <img src="assets/logo-mark.png" alt="ReyEngrave Monogramm" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 80 80\' style=\'width:100%;fill:#2E5D34\'><text x=\'50%\' y=\'55%\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'Space Grotesk,sans-serif\' font-weight=\'700\' font-size=\'36\'>RE</text></svg>'">
+            <img src="assets/logo-mark.jpg" alt="ReyEngrave Monogramm" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 80 80\' style=\'width:100%;fill:#2E5D34\'><text x=\'50%\' y=\'55%\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'Space Grotesk,sans-serif\' font-weight=\'700\' font-size=\'36\'>RE</text></svg>'">
+            <div class="engrave-veil"></div>
+            <div class="engrave-row"><span class="laser-focus"></span></div>
           </div>
         </div>
-        <div class="laser-line"></div>
         <div class="hero-card-badge">LASER · READY</div>
       </div>
     </div>
@@ -349,31 +483,31 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
     </div>
     <div class="mat-grid">
       <div class="mat-card">
-        <div class="mat-thumb" style="background:repeating-linear-gradient(91deg,rgba(0,0,0,.05) 0 3px,rgba(255,255,255,.04) 3px 7px),linear-gradient(160deg,#c69a68,#a9743f 55%,#b9854f)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/wood.jpg')"></div>
         <div class="mat-card-body"><h3>Holz</h3><p>Sperrholz, Massivholz, MDF – Gravuren erhalten einen warmen, kontrastreichen Ton.</p></div>
       </div>
       <div class="mat-card">
-        <div class="mat-thumb" style="background:linear-gradient(135deg,#eaf5f6,#cfe7ea 45%,#f3fafb)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/acryl.jpg')"></div>
         <div class="mat-card-body"><h3>Acryl / Plexiglas</h3><p>Brillante Kanten beim Schnitt, matte Gravur – ideal für Schilder und Displays.</p></div>
       </div>
       <div class="mat-card">
-        <div class="mat-thumb" style="background:radial-gradient(circle at 32% 28%,#7a5538,#5d3d27 70%)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/leather.jpg')"></div>
         <div class="mat-card-body"><h3>Leder</h3><p>Personalisierte Portemonnaies, Taschen, Gürtel – dauerhaft und elegant graviert.</p></div>
       </div>
       <div class="mat-card">
-        <div class="mat-thumb" style="background:repeating-linear-gradient(92deg,#c9ccd1 0 2px,#bcbfc4 2px 4px),linear-gradient(180deg,#d3d6da,#b4b7bc)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/metal.jpg')"></div>
         <div class="mat-card-body"><h3>Metall</h3><p>Aluminium, Edelstahl, beschichtete Metalle – für professionelle Auszeichnungen und Typenschilder.</p></div>
       </div>
       <div class="mat-card">
-        <div class="mat-thumb" style="background:linear-gradient(135deg,#b8d4e0,#8ab5c8 50%,#a0c8d8)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/glass.jpg')"></div>
         <div class="mat-card-body"><h3>Glas</h3><p>Matte, feine Gravuren auf Trinkgläsern, Flaschen und Spiegeln.</p></div>
       </div>
       <div class="mat-card">
-        <div class="mat-thumb" style="background:linear-gradient(135deg,#4a4a4a,#2e2e2e 50%,#3a3a3a)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/stone.jpg')"></div>
         <div class="mat-card-body"><h3>Stein / Schiefer</h3><p>Präzise Gravuren auf Schiefer, Granit und Marmor für edle Präsentationen.</p></div>
       </div>
       <div class="mat-card">
-        <div class="mat-thumb" style="background:linear-gradient(135deg,#e8e0d8,#d4c8bc 50%,#e0d8ce)"></div>
+        <div class="mat-thumb" style="background-image:url('assets/textures/plastic.jpg')"></div>
         <div class="mat-card-body"><h3>Kunststoff</h3><p>POM, PP, PE und weitere technische Kunststoffe für Industrie und Gewerbe.</p></div>
       </div>
     </div>
@@ -559,11 +693,13 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
         <div class="gen-stage-col">
           <div class="mat-row">
             <span class="row-label">MUSTERBRETT</span>
-            <button class="mat-btn active" id="mat-wood" onclick="genSetBg('wood')" title="Holzoptik" style="background:repeating-linear-gradient(91deg,rgba(0,0,0,.08) 0 3px,rgba(255,255,255,.06) 3px 7px),linear-gradient(160deg,#c69a68,#a9743f 55%,#b9854f)"></button>
-            <button class="mat-btn" id="mat-acryl" onclick="genSetBg('acryl')" title="Acryl" style="background:linear-gradient(135deg,#eaf5f6,#cfe7ea 45%,#f3fafb)"></button>
-            <button class="mat-btn" id="mat-metal" onclick="genSetBg('metal')" title="Metall" style="background:repeating-linear-gradient(92deg,#c9ccd1 0 2px,#bcbfc4 2px 4px),linear-gradient(180deg,#d3d6da,#b4b7bc)"></button>
-            <button class="mat-btn" id="mat-leder" onclick="genSetBg('leder')" title="Leder" style="background:radial-gradient(circle at 32% 28%,#7a5538,#5d3d27 70%)"></button>
-            <span style="font-size:12.5px;color:#B7B7B0;font-weight:600;margin-left:4px" id="bg-label">Holzoptik</span>
+            <button class="mat-btn active" id="mat-wood" onclick="genSetBg('wood')" title="Eiche" style="background-image:url('assets/textures/wood.jpg')"></button>
+            <button class="mat-btn" id="mat-walnut" onclick="genSetBg('walnut')" title="Nussbaum" style="background-image:url('assets/textures/walnut.jpg')"></button>
+            <button class="mat-btn" id="mat-maple" onclick="genSetBg('maple')" title="Ahorn" style="background-image:url('assets/textures/maple.jpg')"></button>
+            <button class="mat-btn" id="mat-acryl" onclick="genSetBg('acryl')" title="Acryl" style="background-image:url('assets/textures/acryl.jpg')"></button>
+            <button class="mat-btn" id="mat-metal" onclick="genSetBg('metal')" title="Metall" style="background-image:url('assets/textures/metal.jpg')"></button>
+            <button class="mat-btn" id="mat-leder" onclick="genSetBg('leder')" title="Leder" style="background-image:url('assets/textures/leather.jpg')"></button>
+            <span style="font-size:12.5px;color:#B7B7B0;font-weight:600;margin-left:4px" id="bg-label">Eiche</span>
           </div>
           <div class="stage-outer">
             <div class="stage-wrap">
@@ -691,7 +827,7 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
-          <span class="logo-box"><img src="assets/logo-mark.png" alt="ReyEngrave" style="height:40px" onerror="this.style.display='none'"></span>
+          <span class="logo-box"><img src="assets/logo-mark.jpg" alt="ReyEngrave" style="height:40px" onerror="this.style.display='none'"></span>
           <span class="footer-logo-name"><span style="color:#7FBE86">Rey</span><span style="color:#fff">Engrave</span></span>
         </div>
         <p>Präzise Lasergravur und Laserschnitt aus der Schweiz. Vom Prototyp bis zur Kleinserie.</p>
@@ -824,12 +960,23 @@ function removeAttached() {
 
 // ===== DESIGN GENERATOR =====
 const TEX = {
-  wood:  'repeating-linear-gradient(91deg,rgba(0,0,0,.08) 0 3px,rgba(255,255,255,.06) 3px 7px),linear-gradient(160deg,#c69a68,#a9743f 55%,#b9854f)',
-  acryl: 'linear-gradient(135deg,#eaf5f6,#cfe7ea 45%,#f3fafb)',
-  metal: 'repeating-linear-gradient(92deg,#c9ccd1 0 2px,#bcbfc4 2px 4px),linear-gradient(180deg,#d3d6da,#b4b7bc)',
-  leder: 'radial-gradient(circle at 32% 28%,#7a5538,#5d3d27 70%)',
+  wood:   "url('assets/textures/wood.jpg') center/cover",
+  walnut: "url('assets/textures/walnut.jpg') center/cover",
+  maple:  "url('assets/textures/maple.jpg') center/cover",
+  acryl:  "url('assets/textures/acryl.jpg') center/cover",
+  metal:  "url('assets/textures/metal.jpg') center/cover",
+  leder:  "url('assets/textures/leather.jpg') center/cover",
 };
-const BGLABELS = { wood:'Holzoptik', acryl:'Acryl', metal:'Metall', leder:'Leder' };
+// Pfade für den Canvas-Export (Design an Offerte anhängen)
+const TEXIMG = {
+  wood:   'assets/textures/wood.jpg',
+  walnut: 'assets/textures/walnut.jpg',
+  maple:  'assets/textures/maple.jpg',
+  acryl:  'assets/textures/acryl.jpg',
+  metal:  'assets/textures/metal.jpg',
+  leder:  'assets/textures/leather.jpg',
+};
+const BGLABELS = { wood:'Eiche', walnut:'Nussbaum', maple:'Ahorn', acryl:'Acryl', metal:'Metall', leder:'Leder' };
 const FONTS = [
   { css:"'Space Grotesk',sans-serif", label:'Space Grotesk' },
   { css:"'Manrope',sans-serif", label:'Manrope' },
@@ -848,6 +995,7 @@ let genElRefs = {};
 
 const stage = document.getElementById('gen-stage');
 stage.style.background = TEX.wood;
+genUpdateDims(); // Seitenverhältnis der Vorschau initial setzen
 
 function genSetBg(name) {
   genBg = name;
@@ -858,9 +1006,12 @@ function genSetBg(name) {
 }
 
 function genUpdateDims() {
-  const w = document.getElementById('work-w').value;
-  const h = document.getElementById('work-h').value;
-  document.getElementById('stage-badge').textContent = w + ' × ' + h + ' mm';
+  const w = parseFloat(document.getElementById('work-w').value);
+  const h = parseFloat(document.getElementById('work-h').value);
+  document.getElementById('stage-badge').textContent =
+    (document.getElementById('work-w').value) + ' × ' + (document.getElementById('work-h').value) + ' mm';
+  // Vorschaufläche an das echte Werkstück-Seitenverhältnis anpassen
+  if (w > 0 && h > 0) stage.style.aspectRatio = w + ' / ' + h;
 }
 
 function genOnPreset(sel) {
@@ -902,12 +1053,34 @@ function genOnUpload(input) {
       let w = img.width, h = img.height, max = 220;
       if (w >= h) { if (w > max) { h = h*max/w; w = max; } }
       else { if (h > max) { w = w*max/h; h = max; } }
-      genAddEl({ type:'image', src: r.result, w: Math.round(w), h: Math.round(h) });
+      // Laser gravieren keine Farben → Bild sofort in Graustufen umwandeln
+      genAddEl({ type:'image', src: toGrayscaleDataURL(img), w: Math.round(w), h: Math.round(h) });
     };
     img.src = r.result;
   };
   r.readAsDataURL(f);
   input.value = '';
+}
+
+// Wandelt ein Bild in Graustufen um und gibt eine Data-URL zurück
+function toGrayscaleDataURL(img) {
+  const c = document.createElement('canvas');
+  c.width = img.naturalWidth || img.width;
+  c.height = img.naturalHeight || img.height;
+  const cx = c.getContext('2d');
+  cx.drawImage(img, 0, 0, c.width, c.height);
+  try {
+    const d = cx.getImageData(0, 0, c.width, c.height);
+    const px = d.data;
+    for (let i = 0; i < px.length; i += 4) {
+      const g = Math.round(0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]);
+      px[i] = px[i + 1] = px[i + 2] = g;
+    }
+    cx.putImageData(d, 0, 0);
+    return c.toDataURL('image/png');
+  } catch (e) {
+    return img.src; // Fallback, falls die Pixeldaten nicht lesbar sind
+  }
 }
 
 function genGetSel() { return genEls.find(el => el.id === genSelId) || null; }
@@ -1149,23 +1322,21 @@ async function genAttachDesign() {
   canvas.width = W*scale; canvas.height = H*scale;
   const ctx = canvas.getContext('2d'); ctx.scale(scale,scale);
 
-  // background
-  if (genBg==='wood') {
-    const g=ctx.createLinearGradient(0,0,W,H);
-    g.addColorStop(0,'#c69a68'); g.addColorStop(.55,'#a9743f'); g.addColorStop(1,'#b9854f');
-    ctx.fillStyle=g;
-  } else if (genBg==='acryl') {
-    const g=ctx.createLinearGradient(0,0,W,H);
-    g.addColorStop(0,'#eaf5f6'); g.addColorStop(.5,'#cfe7ea'); g.addColorStop(1,'#f3fafb');
-    ctx.fillStyle=g;
-  } else if (genBg==='metal') {
-    const g=ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0,'#d3d6da'); g.addColorStop(1,'#b4b7bc'); ctx.fillStyle=g;
+  // background – echte Materialtextur (formatfüllend), mit Farb-Fallback
+  const bgImg = await new Promise(res => {
+    const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null);
+    im.src = TEXIMG[genBg] || TEXIMG.wood;
+  });
+  if (bgImg) {
+    const ir = bgImg.width / bgImg.height, sr = W / H;
+    let sw, sh, sx, sy;
+    if (ir > sr) { sh = bgImg.height; sw = sh * sr; sx = (bgImg.width - sw) / 2; sy = 0; }
+    else { sw = bgImg.width; sh = sw / sr; sx = 0; sy = (bgImg.height - sh) / 2; }
+    ctx.drawImage(bgImg, sx, sy, sw, sh, 0, 0, W, H);
   } else {
-    const g=ctx.createRadialGradient(W*.32,H*.28,10,W*.32,H*.28,Math.max(W,H));
-    g.addColorStop(0,'#7a5538'); g.addColorStop(1,'#5d3d27'); ctx.fillStyle=g;
+    ctx.fillStyle = genBg==='wood' ? '#b9854f' : genBg==='acryl' ? '#e8f1f3' : genBg==='metal' ? '#c4c7cc' : '#6a4530';
+    ctx.fillRect(0, 0, W, H);
   }
-  ctx.fillRect(0,0,W,H);
 
   const els = [...genEls].sort((a,b)=>a.z-b.z);
   const imgs = {};
@@ -1206,6 +1377,62 @@ async function genAttachDesign() {
   document.getElementById('attached-img-row').style.display = 'flex';
   document.getElementById('offerte').scrollIntoView({ behavior:'smooth' });
 }
+
+// ===== INTERAKTIVITÄT =====
+(function initInteractions(){
+  // 1) Laser-Sweep-Linie in jede Karte einsetzen (Signature-Effekt)
+  document.querySelectorAll('.service-card, .machine-card, .mat-card, .gal-slot, .step-card').forEach(card => {
+    card.classList.add('has-sweep');
+    const sweep = document.createElement('span');
+    sweep.className = 'laser-sweep';
+    card.appendChild(sweep);
+  });
+
+  // 2) Cursor-Glow: Lichtpunkt folgt der Maus auf grösseren Karten
+  const glowCards = document.querySelectorAll('.service-card, .machine-card, .step-card');
+  glowCards.forEach(card => {
+    card.classList.add('glow-host');
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // 3) Scroll-Reveal mit gestaffelter Verzögerung pro Grid.
+  //    Inhalt wird NUR versteckt, wenn der Browser eine echte Viewport-Höhe hat
+  //    und Animationen erwünscht sind – sonst bleibt alles sofort sichtbar.
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canReveal = ('IntersectionObserver' in window) && window.innerHeight > 0 && !prefersReduced;
+  if (canReveal) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.services-grid, .mat-grid, .machine-grid, .steps-grid, .gal-grid').forEach(grid => {
+      [...grid.children].forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i * 70) + 'ms';
+        io.observe(el);
+      });
+    });
+
+    // Sicherheitsnetz: falls der Observer nie feuert, nach 2,5 s alles einblenden
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+    }, 2500);
+  }
+
+  // 4) Header bekommt beim Scrollen einen dezenten Schatten
+  const header = document.getElementById('site-header');
+  if (header) {
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+})();
 </script>
 </body>
 </html>

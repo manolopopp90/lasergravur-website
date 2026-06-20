@@ -1,0 +1,9 @@
+# Lokale Dev-Konfiguration
+.claude/
+
+# Windows
+desktop.ini
+
+# Original-Logodateien (liegen optimiert in assets/)
+logo_RayEngrave.jpg
+Schriftzug RayEngrave.jpg
