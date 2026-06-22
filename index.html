@@ -93,7 +93,6 @@ img{display:block}
 @keyframes engraveReveal{0%{clip-path:inset(0 0 0 0)}72%{clip-path:inset(100% 0 0 0)}100%{clip-path:inset(100% 0 0 0)}}
 @keyframes engraveRowDown{0%{top:0%;opacity:1}71%{top:100%;opacity:1}73%{opacity:0}100%{top:100%;opacity:0}}
 @keyframes laserRaster{0%{left:0%}100%{left:100%}}
-@media (prefers-reduced-motion:reduce){.engrave-veil,.engrave-row{display:none}}
 .hero-card-badge{position:absolute;bottom:16px;left:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.8);letter-spacing:1px}
 
 /* ---- LEISTUNGEN ---- */
@@ -255,7 +254,8 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
 .laser-sweep{position:absolute;left:0;right:0;top:0;height:2px;
   background:linear-gradient(90deg,transparent,#7CFFB0,#fff,#7CFFB0,transparent);
   box-shadow:0 0 14px 2px rgba(124,255,176,.55);opacity:0;pointer-events:none;z-index:6}
-.has-sweep:hover .laser-sweep{animation:laserSweep .9s cubic-bezier(.4,0,.2,1)}
+.has-sweep:hover .laser-sweep,
+.has-sweep.swept .laser-sweep{animation:laserSweep .9s cubic-bezier(.4,0,.2,1)}
 @keyframes laserSweep{0%{top:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:100%;opacity:0}}
 
 /* --- Custom Cursor-Glow auf Karten (radialer Lichtpunkt folgt der Maus) --- */
@@ -356,11 +356,11 @@ footer{background:#111110;color:#D8D8D2;padding:clamp(48px,7vw,80px) 0 0}
 ::-webkit-scrollbar-thumb{background:#2E5D34;border:2px solid #1B1B19}
 ::-webkit-scrollbar-thumb:hover{background:#7FBE86}
 
-/* --- Reduced Motion: Respekt für Nutzerpräferenz --- */
+/* --- Reduced Motion: Smooth-Scroll aus; dekorative Marken-Animationen bleiben sichtbar --- */
 @media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001ms!important;animation-iteration-count:1!important;
-    transition-duration:.001ms!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto!important}
+  /* Sicherheitsnetz: Inhalt nie dauerhaft unsichtbar */
+  .reveal:not(.in){opacity:1;transform:none}
 }
 </style>
 </head>
@@ -1388,6 +1388,16 @@ async function genAttachDesign() {
     card.appendChild(sweep);
   });
 
+  // 1b) Sweep zusätzlich beim Scrollen auslösen – damit der Effekt auch auf
+  //     Touch-Geräten (kein Hover) sichtbar ist. Klasse .swept beim Eintreten,
+  //     wieder entfernen beim Verlassen, damit er erneut spielen kann.
+  if ('IntersectionObserver' in window && window.innerHeight > 0) {
+    const sweepObs = new IntersectionObserver((entries) => {
+      entries.forEach(en => en.target.classList.toggle('swept', en.isIntersecting));
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.has-sweep').forEach(el => sweepObs.observe(el));
+  }
+
   // 2) Cursor-Glow: Lichtpunkt folgt der Maus auf grösseren Karten
   const glowCards = document.querySelectorAll('.service-card, .machine-card, .step-card');
   glowCards.forEach(card => {
@@ -1402,8 +1412,7 @@ async function genAttachDesign() {
   // 3) Scroll-Reveal mit gestaffelter Verzögerung pro Grid.
   //    Inhalt wird NUR versteckt, wenn der Browser eine echte Viewport-Höhe hat
   //    und Animationen erwünscht sind – sonst bleibt alles sofort sichtbar.
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canReveal = ('IntersectionObserver' in window) && window.innerHeight > 0 && !prefersReduced;
+  const canReveal = ('IntersectionObserver' in window) && window.innerHeight > 0;
   if (canReveal) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
